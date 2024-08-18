@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import './App.css'
+import { deleteDecks } from './api/deleteDecks';
+import { getDecks, TDeck } from './api/getDecks';
+import { createDecks } from './api/createDecks';
 
-type TDeck = {
-  title: string;
-  _id: string
-};
 
 function App() {
 
@@ -13,23 +13,20 @@ function App() {
 
   async function handleCreateDeck(e: React.FormEvent){
     e.preventDefault(); // informs the browser to not refresh the page on submit button click
-    await fetch("http://localhost:3000/decks",
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const deck = await createDecks(title);
+    setDecks([...decks, deck])
     setTitle("");
+  }
+
+  async function handleDeleteDeck(deckId: string) {
+    await deleteDecks(deckId)
+    // Optimistic update approach
+    setDecks(decks.filter((deck) => deck._id !== deckId))
   }
 
   useEffect(() => {
     async function fetchDecks(){
-      const response = await fetch("http://localhost:3000/decks");
-      const newDecks = await response.json()
+      const newDecks = await getDecks()
       setDecks(newDecks);
     }
     fetchDecks();
@@ -39,8 +36,12 @@ function App() {
       <div className="App">
         <div className="decks">
           {
-            decks.map((decks) => (
-              <li key={decks._id}>{decks.title}</li>
+            decks.map((deck) => (
+              <li key={deck._id}>
+                <button onClick={() => handleDeleteDeck(deck._id)}>X</button>
+                
+                <Link to={`decks/${deck._id}`}>{deck.title}</Link>
+              </li>
             ))
           }
         </div>

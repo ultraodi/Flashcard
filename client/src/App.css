@@ -16,19 +16,19 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
-
 }
 
-.decks{
+.decks {
   display: grid;
-  width: 600px;
+  width: 750px;
   margin: 0 auto;
   grid-gap: 10px;
   grid-template-columns: repeat(3, 1fr);
   color: black;
 }
 
-.decks li{
+.decks li {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +40,17 @@
   cursor: pointer;
 }
 
-.decks li:hover{
+.decks li button {
+  position: absolute;
+  font-size: 10px;
+  top: 5px;
+  right: 5px
+}
+
+.decks li button:hover {
+  background-color: #6b7bc5;
+}
+
+.decks li:hover {
   background: #eee;
 }
