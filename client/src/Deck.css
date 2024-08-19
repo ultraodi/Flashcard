@@ -1,22 +1,17 @@
-.App {
+.Deck {
   display: flex;
   flex-direction: column;
   gap: 20px
 }
 
-.App form {
+.Deck form {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
 
-.App h1 {
-  font-size: 32px;
-  text-align: center;
-}
-
-.decks {
+.cards {
   display: grid;
   width: 750px;
   margin: 0 auto;
@@ -25,7 +20,8 @@
   color: black;
 }
 
-.decks li {
+.cards li {
+  margin-top: 30px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -37,20 +33,20 @@
   border-radius: 10px;
   cursor: pointer;
   padding: 12px;
-  padding-top: 20px;;
+  padding-top: 30px;;
 }
 
-.decks li button {
+.cards li button {
   position: absolute;
   font-size: 10px;
   top: 5px;
   right: 5px
 }
 
-.decks li button:hover {
+.cards li button:hover {
   background-color: #6b7bc5;
 }
 
-.decks li:hover {
+.cards li:hover {
   background: #eee;
 }

@@ -8,8 +8,8 @@ import { createDecks } from './api/createDecks';
 
 function App() {
 
-  const [title, setTitle] = useState("")
   const [decks, setDecks] = useState<TDeck[]>([])
+  const [title, setTitle] = useState("")
 
   async function handleCreateDeck(e: React.FormEvent){
     e.preventDefault(); // informs the browser to not refresh the page on submit button click
@@ -33,8 +33,10 @@ function App() {
   }, [])
 
   return (
+    <div className="container">
       <div className="App">
-        <div className="decks">
+        <h1>Your Decks</h1>
+        <ul className="decks">
           {
             decks.map((deck) => (
               <li key={deck._id}>
@@ -44,7 +46,7 @@ function App() {
               </li>
             ))
           }
-        </div>
+        </ul>
 
         <form onSubmit={handleCreateDeck}>
           <label htmlFor='deck-title'>Deck Title</label>
@@ -58,6 +60,7 @@ function App() {
           <button>Create Deck</button>
         </form>
       </div>
+    </div>
   )
 }
 
