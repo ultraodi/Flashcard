@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 import './Deck.css'
 
-
 import { getDeck} from './api/getDeck';
 import { TDeck } from './api/getDecks';
 

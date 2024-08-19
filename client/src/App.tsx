@@ -5,7 +5,6 @@ import { deleteDecks } from './api/deleteDecks';
 import { getDecks, TDeck } from './api/getDecks';
 import { createDecks } from './api/createDecks';
 
-
 function App() {
 
   const [decks, setDecks] = useState<TDeck[]>([])
