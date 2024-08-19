@@ -13,7 +13,7 @@ import { deleteCard } from './api/deleteCard.ts'
 
 
 export default function Deck(){
-  const [_deck, setDeck] = useState<TDeck | undefined>()
+  const [deck, setDeck] = useState<TDeck | undefined>()
   const [cards, setCards] = useState<string[]>([])
   const [text, setText] = useState("")
   const { deckId } = useParams();
@@ -32,6 +32,17 @@ export default function Deck(){
     setCards(newDeck.cards)
   }
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    if (text.trim() === '') {
+      alert('Please fill in the deck title.');
+      return;
+    }
+
+    await handleCreateDeck(event); // Calling handleCreateDeck function if the input is valid
+  };
+
   useEffect(() => {
     async function fetchDeck(){
       if (!deckId) return;
@@ -44,6 +55,7 @@ export default function Deck(){
 
   return (
       <div className="Deck">
+        <h1>{deck?.title}</h1>
         <ul className="cards">
           {
             cards.map((card, index) => (
@@ -55,7 +67,7 @@ export default function Deck(){
           }
         </ul>
 
-        <form onSubmit={handleCreateDeck}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor='card-text'>Card Text</label>
           <input 
             id='card-text'

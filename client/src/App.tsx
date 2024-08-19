@@ -24,6 +24,19 @@ function App() {
     setDecks(decks.filter((deck) => deck._id !== deckId))
   }
 
+  // Handle form submission
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    if (title.trim() === '') {
+      alert('Please fill in the deck title.');
+      return;
+    }
+
+    await handleCreateDeck(event); // Calling handleCreateDeck function if the input is valid
+  };
+
+
   useEffect(() => {
     async function fetchDecks(){
       const newDecks = await getDecks()
@@ -48,7 +61,7 @@ function App() {
           }
         </ul>
 
-        <form onSubmit={handleCreateDeck}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor='deck-title'>Deck Title</label>
           <input 
             id='deck-title'
