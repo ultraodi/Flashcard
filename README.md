@@ -62,7 +62,7 @@ If you'd like to contribute to StudySpark, please follow these guidelines:
 - Push to the branch (`git push origin feature-branch`)
 - Create a new Pull Request
 
-## Screenshots or GIFs
+## Screenshots
 
 ![image](https://github.com/user-attachments/assets/55170dd8-8179-4fd7-8795-fee2d6f4dc48)
 ![image](https://github.com/user-attachments/assets/9dc7f0db-5d88-4cc2-9095-d387f377d815)
